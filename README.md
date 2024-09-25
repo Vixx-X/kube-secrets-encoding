@@ -27,8 +27,6 @@ Options:
 ```
 
 For more detailed examples and usage tips, refer to our documentation.
-git clone https://github.com/yourusername/kube-secrets-encoding.git
-cd kube-secrets-encoding
 
 ## License
 
