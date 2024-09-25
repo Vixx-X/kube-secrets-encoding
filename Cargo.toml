@@ -1,0 +1,9 @@
+[package]
+name = "kube-secrets-encoding"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+base64 = "0.22.1"
+clap = { version = "4.5.18", features = ["derive"] }
+serde_yml = "0.0.12"
