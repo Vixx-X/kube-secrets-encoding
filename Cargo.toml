@@ -2,6 +2,11 @@
 name = "kube-secrets-encoding"
 version = "0.1.0"
 edition = "2021"
+description = "Encode Kubernetes secrets for data and dataString"
+readme = "README.md"
+license = "MIT"
+documentation = "https://docs.rs/kube-secrets-encoding"
+repository = "https://github.com/Vixx-X/kube-secrets-encoding"
 
 [dependencies]
 base64 = "0.22.1"
