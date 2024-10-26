@@ -6,8 +6,8 @@ use std::path::PathBuf;
 #[derive(Parser, Debug)]
 #[command(version, about, long_about = None)]
 struct Args {
-    #[arg(value_name = "FILE")]
-    file: PathBuf,
+    #[arg(short, long, value_name = "FILE")]
+    file: Option<PathBuf>,
 
     #[arg(short, long, value_name = "OUTPUT_FILE")]
     output: Option<PathBuf>,
@@ -100,8 +100,12 @@ fn process_yaml(mut yaml: serde_yml::Value, decode: bool) -> serde_yml::Value {
 fn main() {
     let args = Args::parse();
 
-    let file_path = &args.file;
-    let file = std::fs::File::open(file_path).expect("File not found");
+    let file: Box<dyn std::io::BufRead> = match args.file {
+        None => Box::new(std::io::BufReader::new(std::io::stdin())),
+        Some(filename) => Box::new(std::io::BufReader::new(
+            std::fs::File::open(filename).expect("File not found"),
+        )),
+    };
     let yaml: serde_yml::Value = serde_yml::from_reader(file).expect("Invalid YAML");
 
     if args.output.is_some() {
